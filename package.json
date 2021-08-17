@@ -1,0 +1,30 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "weather app",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "usemin": "usemin index.html -d dist --htmlmin -o dist/index.html",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run usemin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eschroer/weatherapp.git"
+  },
+  "author": "Emerson Schroer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eschroer/weatherapp/issues"
+  },
+  "homepage": "https://github.com/eschroer/weatherapp#readme",
+  "devDependencies": {
+    "npm-prepare-dist": "^0.3.1",
+    "rimraf": "^3.0.2",
+    "usemin-cli": "^0.6.0"
+  },
+  "dependencies": {
+    "uglify-es": "github:mishoo/UglifyJS2#harmony"
+  }
+}

@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const api = `http://api.weatherstack.com/current?access_key=a3c62236374e3f3a3b9cc0f2443bba84&query=${lat},${long}`;
+            const api = `https://cors-anywhere.herokuapp.com/http://api.weatherstack.com/current?access_key=a3c62236374e3f3a3b9cc0f2443bba84&query=${lat},${long}`;
             
             fetch(api)
             .then(response => {
@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
             weatherIcon.src = weather_icons;
 
             //Formula for Fahrenheit
-            let fahrenheit = (temperature * 9/5) + 32
+            let fahrenheit = (temperature * 9/5) + 32;
                
             //Toggle Fahrenheit and Celsius
 
