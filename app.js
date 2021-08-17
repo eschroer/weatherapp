@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const api = `http://api.weatherstack.com/current?access_key=a3c62236374e3f3a3b9cc0f2443bba84&query=${lat},${long}`;
+            const api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=1b70e9dbe181a003d9a86c7d2a22a6bc`;
             
             fetch(api)
             .then(response => {
@@ -22,16 +22,18 @@ window.addEventListener('load', () => {
             })
             .then(data => {
                 console.log(data);
-                const { temperature, weather_descriptions, weather_icons } = data.current;
-                const { name, region } = data.location
+                const { temp } = data.main;
+                const { main, icon } = data.weather[0]
+                console.log(data.weather[0].icon)
             // Set DOM Elements from the API
-            temperatureDegree.textContent = temperature;
-            temperatureDescription.textContent = weather_descriptions;
-            locationTimezone.textContent = name + ", " + region; 
-            weatherIcon.src = weather_icons;
+            let tempAdjusted = Math.floor(temp - 273.15)
+            temperatureDegree.textContent = tempAdjusted;
+            temperatureDescription.textContent = main;
+            locationTimezone.textContent = data.name; 
+            weatherIcon.src = `https://openweathermap.org/img/w/${icon}.png`
 
             //Formula for Fahrenheit
-            let fahrenheit = (temperature * 9/5) + 32;
+            let fahrenheit = (tempAdjusted * 9/5) + 32;
                
             //Toggle Fahrenheit and Celsius
 
@@ -41,7 +43,7 @@ window.addEventListener('load', () => {
                     temperatureDegree.textContent = fahrenheit;
                 } else {
                     tempSpan.textContent = "C";
-                    temperatureDegree.textContent = temperature;
+                    temperatureDegree.textContent = tempAdjusted;
                 }
             })
 
